@@ -69,7 +69,7 @@ app.get('/team/:id/previous-game', async (req, res) => {
 app.get('/player/:id', async (req, res) => {
     try {
         const { data } = await axios.get(`${API_URL}/people/${req.params.id}`)
-        res.send(data.people)
+        res.send(data.people[0])
     } catch (error) {
         console.log(error.message)
     }
@@ -79,7 +79,7 @@ app.get('/player/:id', async (req, res) => {
 app.get('/player/:id/stats', async (req, res) => {
     try {
         const { data } = await axios.get(`${API_URL}/people/${req.params.id}/stats?stats=statsSingleSeason&season=${CURRENT_SEASON}`)
-        res.send(data.stats)
+        res.send(data.stats[0].splits[0])
     } catch (error) {
         console.log(error.message)
     }
