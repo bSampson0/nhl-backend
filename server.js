@@ -59,7 +59,7 @@ app.get('/team/:id/next-game', async (req, res) => {
 app.get('/team/:id/previous-game', async (req, res) => {
     try {
         const { data } = await axios.get(`${API_URL}/teams/${req.params.id}?expand=team.schedule.previous`);
-        res.send(data)
+        res.send(data.teams[0].previousGameSchedule.dates[0].games)
     } catch (error) {
         console.log(error.message)
     }
