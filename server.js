@@ -39,7 +39,7 @@ app.get('/team/:id/stats', async (req, res) => {
 app.get('/team/:id/roster', async (req, res) => {
     try {
         const { data } = await axios.get(`${API_URL}/teams/${req.params.id}?expand=team.roster`);
-        res.send(data.teams)
+        res.send(data.teams[0].roster.roster)
     } catch (error) {
         console.log(error.message)
     }
