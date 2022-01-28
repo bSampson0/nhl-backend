@@ -89,13 +89,13 @@ app.get('/player/:id/stats', async (req, res) => {
 app.get('/player/:id/stats/game-log', async (req, res) => {
     try {
         const { data } = await axios.get(`${API_URL}/people/${req.params.id}/stats?stats=gameLog&season=${CURRENT_SEASON}`)
-        res.send(data.stats)
+        res.send(data.stats[0].splits)
     } catch (error) {
         console.log(error.message)
     }
 })
 
 app.listen(PORT, () => {
-    console.log(`listeing on port ${PORT}`)
+    console.log(`listening on port ${PORT}`)
 })
 
