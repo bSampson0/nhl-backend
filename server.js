@@ -123,6 +123,7 @@ app.get('/player/:id/stats/game-log', async (req, res) => {
     }
 })
 
+// gretzky career gamelog
 app.get('/gretzky-gamelogs', async (req, res) => {
     let carreer_goals = 0
     let carreer_assists = 0
@@ -152,6 +153,16 @@ app.get('/gretzky-gamelogs', async (req, res) => {
             return stats
             })
         res.send(gameStats)
+    } catch (error) {
+        console.error(error.message)
+    }
+})
+
+// get team rankings
+app.get('/standings', async (req, res) => {
+    try {
+        const { data } = await axios.get(`${API_URL}/standings`)
+        res.send(data.records)
     } catch (error) {
         console.error(error.message)
     }
